@@ -10,8 +10,16 @@
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%-5level %logger{0} - %msg%n</pattern>
+            <pattern>%d [%t] %-5p %c - %m%n</pattern>
         </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <File>logs/petclinic.log</File>
+        <Append>true</Append>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d [%t] %-5p %c - %m%n</pattern>
+        </layout>
     </appender>
 
 	<!--<logger name="org.hibernate" level="debug"/> -->
@@ -19,5 +27,6 @@
          
     <root level="info">
         <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
     </root>
 </configuration>

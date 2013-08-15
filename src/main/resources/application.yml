@@ -1,0 +1,9 @@
+spring:
+  profiles: spring-data-jpa
+
+server:
+    port: 9080
+
+management:
+    port: 9081
+    contextPath: /admin
