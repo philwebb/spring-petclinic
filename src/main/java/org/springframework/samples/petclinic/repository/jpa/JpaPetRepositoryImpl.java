@@ -20,6 +20,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.repository.PetRepository;
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Repository;
  * @since 22.4.2006
  */
 @Repository
+@Profile("jpa")
 public class JpaPetRepositoryImpl implements PetRepository {
 
     @PersistenceContext
@@ -54,10 +56,10 @@ public class JpaPetRepositoryImpl implements PetRepository {
     @Override
     public void save(Pet pet) {
     	if (pet.getId() == null) {
-    		this.em.persist(pet);     		
+    		this.em.persist(pet);
     	}
     	else {
-    		this.em.merge(pet);    
+    		this.em.merge(pet);
     	}
     }
 

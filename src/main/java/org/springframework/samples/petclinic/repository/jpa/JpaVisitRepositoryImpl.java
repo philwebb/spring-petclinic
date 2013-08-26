@@ -21,6 +21,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.stereotype.Repository;
@@ -37,6 +38,7 @@ import org.springframework.stereotype.Repository;
  * @since 22.4.2006
  */
 @Repository
+@Profile("jpa")
 public class JpaVisitRepositoryImpl implements VisitRepository {
 
     @PersistenceContext
@@ -46,10 +48,10 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
     @Override
     public void save(Visit visit) {
     	if (visit.getId() == null) {
-    		this.em.persist(visit);     		
+    		this.em.persist(visit);
     	}
     	else {
-    		this.em.merge(visit);    
+    		this.em.merge(visit);
     	}
     }
 

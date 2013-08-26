@@ -1,5 +1,6 @@
 spring:
-  profiles: spring-data-jpa
+  profiles:
+    active: spring-data-jpa
   application:
     name: PetClinic
 server:

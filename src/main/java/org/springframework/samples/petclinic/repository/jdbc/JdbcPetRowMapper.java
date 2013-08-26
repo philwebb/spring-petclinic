@@ -20,12 +20,14 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import org.joda.time.DateTime;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 /**
  * {@link ParameterizedRowMapper} implementation mapping data from a {@link ResultSet} to the corresponding properties
  * of the {@link JdbcPet} class.
  */
+@Profile("jdbc")
 class JdbcPetRowMapper implements ParameterizedRowMapper<JdbcPet> {
 
     @Override

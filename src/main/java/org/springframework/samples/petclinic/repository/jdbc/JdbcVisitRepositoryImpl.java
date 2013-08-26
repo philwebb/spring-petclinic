@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -45,6 +46,7 @@ import org.springframework.stereotype.Repository;
  * @author Michael Isvy
  */
 @Repository
+@Profile("jdbc")
 public class JdbcVisitRepositoryImpl implements VisitRepository {
 
     private JdbcTemplate jdbcTemplate;

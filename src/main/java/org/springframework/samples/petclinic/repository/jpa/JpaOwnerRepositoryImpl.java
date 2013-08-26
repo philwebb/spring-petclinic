@@ -21,6 +21,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
@@ -36,6 +37,7 @@ import org.springframework.stereotype.Repository;
  * @since 22.4.2006
  */
 @Repository
+@Profile("jpa")
 public class JpaOwnerRepositoryImpl implements OwnerRepository {
 
     @PersistenceContext
@@ -43,7 +45,7 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
 
 
     /**
-     * Important: in the current version of this method, we load Owners with all their Pets and Visits while 
+     * Important: in the current version of this method, we load Owners with all their Pets and Visits while
      * we do not need Visits at all and we only need one property from the Pet objects (the 'name' property).
      * There are some ways to improve it such as:
      * - creating a Ligtweight class (example here: https://community.jboss.org/wiki/LightweightClass)
@@ -71,10 +73,10 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
     @Override
     public void save(Owner owner) {
     	if (owner.getId() == null) {
-    		this.em.persist(owner);     		
+    		this.em.persist(owner);
     	}
     	else {
-    		this.em.merge(owner);    
+    		this.em.merge(owner);
     	}
 
     }

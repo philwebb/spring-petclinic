@@ -25,5 +25,6 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
+//TODO DATACMNS-360 @Profile("spring-data-jpa")
 public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer> {
 }
