@@ -44,10 +44,6 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Arjen Poutsma
  * @author Michael Isvy
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@WebAppConfiguration
-//@ContextConfiguration("VisitsViewTests-config.xml")
-//@ActiveProfiles("jdbc")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = PetClinicApplication.class)
 @WebAppConfiguration

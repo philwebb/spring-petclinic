@@ -8,6 +8,8 @@ PetClinic :: a Spring Framework demonstration
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>PetClinic :: a Spring Framework demonstration</title>
 
+    <spring:url value="/resources/favicon.png" var="faviconUrl"/>
+	<link rel="shortcut icon" type="image/x-icon" href="${faviconUrl}"/>
 
     <spring:url value="/webjars/bootstrap/2.3.0/css/bootstrap.min.css" var="bootstrapCss"/>
     <link href="${bootstrapCss}" rel="stylesheet"/>
