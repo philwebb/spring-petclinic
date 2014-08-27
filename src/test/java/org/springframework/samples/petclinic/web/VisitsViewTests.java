@@ -27,9 +27,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.samples.petclinic.PetClinicApplication;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -42,10 +44,15 @@ import org.springframework.web.context.WebApplicationContext;
  * @author Arjen Poutsma
  * @author Michael Isvy
  */
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@WebAppConfiguration
+//@ContextConfiguration("VisitsViewTests-config.xml")
+//@ActiveProfiles("jdbc")
 @RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = PetClinicApplication.class)
 @WebAppConfiguration
-@ContextConfiguration("VisitsViewTests-config.xml")
-@ActiveProfiles("jdbc")
+@IntegrationTest("server.port:0")
+@DirtiesContext
 public class VisitsViewTests {
 
     @Autowired
@@ -60,11 +67,10 @@ public class VisitsViewTests {
     
     @Test
     public void getVisitsXml() throws Exception {
-        ResultActions actions = this.mockMvc.perform(get("/vets.xml").accept(MediaType.APPLICATION_XML));
+    	ResultActions actions = this.mockMvc.perform(get("/vets.xml").accept(MediaType.APPLICATION_XML));
         actions.andDo(print()); // action is logged into the console
         actions.andExpect(status().isOk());
         actions.andExpect(content().contentType("application/xml"));
         actions.andExpect(xpath("/vets/vetList[id=1]/firstName").string(containsString("James")));
-
     }
 }

@@ -2,8 +2,10 @@
 package org.springframework.samples.petclinic.service;
 
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.samples.petclinic.PetClinicApplication;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -12,9 +14,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author Michael Isvy
  */
 
-@ContextConfiguration(locations = {"classpath:spring/business-config.xml"})
+@SpringApplicationConfiguration(classes = PetClinicApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("spring-data-jpa")
+@DirtiesContext
 public class ClinicServiceSpringDataJpaTests extends AbstractClinicServiceTests {
 
 }

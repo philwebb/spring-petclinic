@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
+<%--@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" --%>
 
 <html lang="en">
 
@@ -15,7 +15,31 @@
     <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2>Owners</h2>
     
-    <datatables:table id="owners" data="${selections}" row="owner" theme="bootstrap2" 
+    <table class="table table-striped">
+    	<thead>
+    		<tr><th style="width: 150px;">Name</th><th>Address</th><th>City</th><th>Telephone</th><th>Pets</th></tr>
+    	</thead>
+		<tbody>
+		<c:forEach var="owner" items="${selections}">
+			<tr>
+				<td>
+					<spring:url value="/owners/{ownerId}.html" var="ownerUrl">
+						<spring:param name="ownerId" value="${owner.id}"/>
+					</spring:url>
+					<a href="${fn:escapeXml(ownerUrl)}"><c:out value="${owner.firstName} ${owner.lastName}"/></a>
+				</td>
+				<td style="width: 200px;"><c:out value="${owner.address}"/></td>
+				<td><c:out value="${owner.city}"/></td>
+				<td><c:out value="${owner.telephone}"/></td>
+				<td style="width: 100px;">
+					<c:forEach var="pet" items="${owner.pets}">
+						<c:out value="${pet.name}"/>
+					</c:forEach>
+				</td>
+		</c:forEach>
+		</tbody>
+    </table>
+    <%-- datatables:table id="owners" data="${selections}" row="owner" theme="bootstrap2" 
                       cssClass="table table-striped" pageable="false" info="false" export="pdf">
         <datatables:column title="Name" cssStyle="width: 150px;" display="html">
             <spring:url value="/owners/{ownerId}.html" var="ownerUrl">
@@ -35,7 +59,7 @@
             </c:forEach>
         </datatables:column>
         <datatables:export type="pdf" cssClass="btn" cssStyle="height: 25px;" />
-    </datatables:table>
+    </datatables:table --%>
     
     <jsp:include page="../fragments/footer.jsp"/>
 
