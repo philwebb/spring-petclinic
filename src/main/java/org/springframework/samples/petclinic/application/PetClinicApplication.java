@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic;
+package org.springframework.samples.petclinic.application;
 
 import java.util.Arrays;
 
@@ -13,6 +13,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
+({
+	"org.springframework.samples.petclinic.configuration",
+	"org.springframework.samples.petclinic.service",
+	"org.springframework.samples.petclinic.web"
+})
 public class PetClinicApplication extends SpringBootServletInitializer {
 	
 	@Override
