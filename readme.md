@@ -35,3 +35,4 @@ File -> Import -> Maven -> Existing Maven project
 ```
 3) Right click on PetClinicApplication.java -> Run as -> Java application
 ```
+
