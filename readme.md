@@ -33,6 +33,41 @@ git clone https://github.com/SpringSource/spring-petclinic.git
 ```
 File -> Import -> Maven -> Existing Maven project
 ```
-3) Right click on PetClinicApplication.java -> Run as -> Java application
+3) Start the application
 ```
+Right click on PetClinicApplication.java -> Run as -> Java application
+```
+
+## Looking for something in particular?
+
+<table>
+  <tr>
+    <th width="300px">The Spring Boot configuration</th><th width="300px">Files</th>
+  </tr>
+  <tr>
+    <td>The Main Class</td>
+    <td>
+      <a href="/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java">PetClinicApplication.java</a>
+    </td>
+  <tr>
+    <td>Spring MVC- Atom and XML integration</td>
+    <td>
+      <a href="/src/main/java/org/springframework/samples/petclinic/configuration/CustomViewsConfiguration.java">CustomViewsConfiguration.java</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Properties Files</td>
+    <td>
+      <a href="/src/main/resources/application.properties">application.properties</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Caching</td>
+    <td>Use of EhCache <a href="/src/main/java/org/springframework/samples/petclinic/configuration/CachingConfiguration.java">CachingConfiguration.java</a>
+  </tr>
+  <tr>
+    <td>Testing</td>
+    <td>Use of @SpringApplicationConfiguration for setting the context and @WebAppConfiguration for web tests.
+  </tr>
+</table>
 
