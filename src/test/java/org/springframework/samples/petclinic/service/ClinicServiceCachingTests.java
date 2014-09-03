@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.samples.petclinic.PetClinicApplication;
+import org.springframework.samples.petclinic.application.PetClinicApplication;
 import org.springframework.samples.petclinic.configuration.CachingConfiguration;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.test.annotation.DirtiesContext;
