@@ -5,7 +5,7 @@
 
 ## Running petclinic locally with Spring Boot
 ```
-	git clone https://github.com/SpringSource/spring-petclinic.git
+	git clone https://github.com/FabienLauf/spring-petclinic.git
 	mvn spring-boot:run
 ```
 
@@ -27,7 +27,7 @@ If m2e is not there, just follow the install process here: http://eclipse.org/m2
 
 1) In the command line
 ```
-git clone https://github.com/SpringSource/spring-petclinic.git
+git clone https://github.com/FabienLauf/spring-petclinic.git
 ```
 2) Inside Eclipse
 ```
@@ -35,6 +35,7 @@ File -> Import -> Maven -> Existing Maven project
 ```
 3) Start the application
 ```
+Open spring-petclinic/src/main/java/org.springframework.samples.petclinic.application
 Right click on PetClinicApplication.java -> Run as -> Java application
 ```
 
@@ -47,7 +48,7 @@ Right click on PetClinicApplication.java -> Run as -> Java application
   <tr>
     <td>The Main Class</td>
     <td>
-      <a href="/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java">PetClinicApplication.java</a>
+      <a href="/src/main/java/org/springframework/samples/petclinic/application/PetClinicApplication.java">PetClinicApplication.java</a>
     </td>
   <tr>
     <td>Spring MVC- Atom and XML integration</td>
