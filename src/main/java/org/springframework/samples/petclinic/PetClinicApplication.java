@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.application;
+package org.springframework.samples.petclinic;
 
 import java.util.Arrays;
 
