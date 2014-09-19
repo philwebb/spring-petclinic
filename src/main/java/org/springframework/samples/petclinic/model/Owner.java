@@ -45,6 +45,7 @@ import org.springframework.core.style.ToStringCreator;
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
+
 	@Column(name = "address")
 	@NotEmpty
 	private String address;
@@ -110,7 +111,6 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given name, or null if none found for this Owner.
-	 *
 	 * @param name to test
 	 * @return true if pet name is already in use
 	 */
@@ -120,8 +120,8 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given name, or null if none found for this Owner.
-	 *
 	 * @param name to test
+	 * @param ignoreNew if new pets should be ignored
 	 * @return true if pet name is already in use
 	 */
 	public Pet getPet(String name, boolean ignoreNew) {
@@ -140,10 +140,8 @@ public class Owner extends Person {
 
 	@Override
 	public String toString() {
-		return new ToStringCreator(this)
-
-		.append("id", this.getId()).append("new", this.isNew())
-				.append("lastName", this.getLastName())
+		return new ToStringCreator(this).append("id", this.getId())
+				.append("new", this.isNew()).append("lastName", this.getLastName())
 				.append("firstName", this.getFirstName()).append("address", this.address)
 				.append("city", this.city).append("telephone", this.telephone).toString();
 	}
