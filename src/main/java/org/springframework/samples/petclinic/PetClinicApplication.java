@@ -16,10 +16,25 @@
 
 package org.springframework.samples.petclinic;
 
+import net.sf.ehcache.config.CacheConfiguration;
+import net.sf.ehcache.config.PersistenceConfiguration;
+import net.sf.ehcache.config.PersistenceConfiguration.Strategy;
+import net.sf.ehcache.store.MemoryStoreEvictionPolicy;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.samples.petclinic.model.Vets;
+import org.springframework.samples.petclinic.web.VetsAtomView;
+import org.springframework.web.servlet.view.BeanNameViewResolver;
+import org.springframework.web.servlet.view.xml.MarshallingView;
 
 /**
  * PetClinic Spring Boot Application.
@@ -30,6 +45,54 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @ComponentScan
 public class PetClinicApplication {
+
+	/**
+	 * {@link BeanNameViewResolver} is used to resolve the Atom and Xml views. So, the
+	 * following beans names must match the name of the JSP you want to override and the
+	 * file extension will indicate which bean to use for resolving.
+	 * @return the atom view
+	 */
+	@Bean(name = "vets/vetList.atom")
+	public VetsAtomView vetsAtomView() {
+		return new VetsAtomView();
+	}
+
+	@Bean(name = "vets/vetList.xml")
+	public MarshallingView vetsXmlView() {
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		marshaller.setClassesToBeBound(Vets.class);
+		return new MarshallingView(marshaller);
+	}
+
+	/**
+	 * Caching configuration.
+	 */
+	@EnableCaching
+	static class CachingConfiguration extends CachingConfigurerSupport {
+
+		@Bean(destroyMethod = "shutdown")
+		public net.sf.ehcache.CacheManager ehCacheManager() {
+			CacheConfiguration cacheConfiguration = new CacheConfiguration();
+			cacheConfiguration.name("vets")
+					.memoryStoreEvictionPolicy(MemoryStoreEvictionPolicy.LRU)
+					.timeToLiveSeconds(60L).eternal(false).maxEntriesLocalHeap(100)
+					.maxElementsOnDisk(10000000)
+					.persistence(new PersistenceConfiguration().strategy(Strategy.NONE))
+					.diskExpiryThreadIntervalSeconds(1);
+
+			net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
+			config.addCache(cacheConfiguration);
+
+			return net.sf.ehcache.CacheManager.newInstance(config);
+		}
+
+		@Bean
+		@Override
+		public CacheManager cacheManager() {
+			return new EhCacheCacheManager(ehCacheManager());
+		}
+
+	}
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(PetClinicApplication.class, args);

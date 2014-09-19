@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.samples.petclinic.PetClinicApplication;
-import org.springframework.samples.petclinic.configuration.CachingConfiguration;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -42,18 +41,18 @@ public class ClinicServiceCachingTests {
 
 	@Before
 	public void before() {
-		this.cacheManager.getCache(CachingConfiguration.VETS_CACHE_NAME).flush();
+		this.cacheManager.getCache("vets").flush();
 	}
 
 	@Test
 	public void findVets() {
-		assertCacheSize(CachingConfiguration.VETS_CACHE_NAME, 0);
+		assertCacheSize("vets", 0);
 
 		Collection<Vet> vets = this.clinicService.findVets();
 		Assert.assertFalse("There is no vets in database...",
 				CollectionUtils.isEmpty(vets));
 
-		assertCacheSize(CachingConfiguration.VETS_CACHE_NAME, vets.size());
+		assertCacheSize("vets", vets.size());
 	}
 
 	@SuppressWarnings("unchecked")
