@@ -19,9 +19,7 @@ package org.springframework.samples.petclinic.web;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +38,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-
 /**
  * @author Arjen Poutsma
  * @author Michael Isvy
@@ -53,22 +50,25 @@ import org.springframework.web.context.WebApplicationContext;
 @ActiveProfiles("spring-data-jpa")
 public class VisitsViewTests {
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-    }
-    
-    @Test
-    public void getVisitsXml() throws Exception {
-    	ResultActions actions = this.mockMvc.perform(get("/vets.xml").accept(MediaType.APPLICATION_XML));
-        actions.andDo(print()); // action is logged into the console
-        actions.andExpect(status().isOk());
-        actions.andExpect(content().contentType("application/xml"));
-        actions.andExpect(xpath("/vets/vetList[id=1]/firstName").string(containsString("James")));
-    }
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext)
+				.build();
+	}
+
+	@Test
+	public void getVisitsXml() throws Exception {
+		ResultActions actions = this.mockMvc.perform(get("/vets.xml").accept(
+				MediaType.APPLICATION_XML));
+		actions.andDo(print()); // action is logged into the console
+		actions.andExpect(status().isOk());
+		actions.andExpect(content().contentType("application/xml"));
+		actions.andExpect(xpath("/vets/vetList[id=1]/firstName").string(
+				containsString("James")));
+	}
 }

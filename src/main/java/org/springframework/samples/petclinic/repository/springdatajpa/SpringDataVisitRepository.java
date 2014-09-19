@@ -25,5 +25,6 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
-public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer> {
+public interface SpringDataVisitRepository extends VisitRepository,
+		Repository<Visit, Integer> {
 }

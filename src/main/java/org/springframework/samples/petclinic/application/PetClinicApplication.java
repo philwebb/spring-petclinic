@@ -12,30 +12,28 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
-({
-	"org.springframework.samples.petclinic.configuration",
-	"org.springframework.samples.petclinic.service",
-	"org.springframework.samples.petclinic.web"
-})
+@ComponentScan({ "org.springframework.samples.petclinic.configuration",
+		"org.springframework.samples.petclinic.service",
+		"org.springframework.samples.petclinic.web" })
 public class PetClinicApplication extends SpringBootServletInitializer {
-	
+
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(PetClinicApplication.class); 
+		return application.sources(PetClinicApplication.class);
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		ApplicationContext ctx = SpringApplication.run(PetClinicApplication.class, args);
-		
-		System.out.println("Active Profiles: "+Arrays.toString(ctx.getEnvironment().getActiveProfiles()));
-		
+
+		System.out.println("Active Profiles: "
+				+ Arrays.toString(ctx.getEnvironment().getActiveProfiles()));
+
 		System.out.println("Let's inspect the beans provided by Spring Boot:");
 		String[] beanNames = ctx.getBeanDefinitionNames();
 		Arrays.sort(beanNames);
 		for (String beanName : beanNames) {
 			System.out.println(beanName);
 		}
-		
+
 	}
 }

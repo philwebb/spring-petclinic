@@ -25,33 +25,31 @@ public class CachingConfiguration extends CachingConfigurerSupport {
 
 	public static final String VETS_CACHE_NAME = "vets";
 
-	@Bean(destroyMethod="shutdown")
-    public net.sf.ehcache.CacheManager ehCacheManager() {
+	@Bean(destroyMethod = "shutdown")
+	public net.sf.ehcache.CacheManager ehCacheManager() {
 		CacheConfiguration cacheConfiguration = new CacheConfiguration();
 		cacheConfiguration.name(CachingConfiguration.VETS_CACHE_NAME)
-						.memoryStoreEvictionPolicy(MemoryStoreEvictionPolicy.LRU)
-						.timeToLiveSeconds(60L)
-						.eternal(false)
-						.maxEntriesLocalHeap(100)
-						.maxElementsOnDisk(10000000)
-						.persistence(new PersistenceConfiguration().strategy(Strategy.NONE))
-						.diskExpiryThreadIntervalSeconds(1);
+				.memoryStoreEvictionPolicy(MemoryStoreEvictionPolicy.LRU)
+				.timeToLiveSeconds(60L).eternal(false).maxEntriesLocalHeap(100)
+				.maxElementsOnDisk(10000000)
+				.persistence(new PersistenceConfiguration().strategy(Strategy.NONE))
+				.diskExpiryThreadIntervalSeconds(1);
 
 		net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
 		config.addCache(cacheConfiguration);
 
 		return net.sf.ehcache.CacheManager.newInstance(config);
-    }
+	}
 
-    @Bean
-    @Override
-    public CacheManager cacheManager() {
-        return new EhCacheCacheManager(ehCacheManager());
-    }
+	@Bean
+	@Override
+	public CacheManager cacheManager() {
+		return new EhCacheCacheManager(ehCacheManager());
+	}
 
-    @Bean
-    @Override
-    public KeyGenerator keyGenerator() {
-        return new SimpleKeyGenerator();
-    }
+	@Bean
+	@Override
+	public KeyGenerator keyGenerator() {
+		return new SimpleKeyGenerator();
+	}
 }

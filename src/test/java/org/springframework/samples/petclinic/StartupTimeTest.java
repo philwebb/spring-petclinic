@@ -24,18 +24,20 @@ import org.springframework.web.context.WebApplicationContext;
 @DirtiesContext
 @ActiveProfiles("spring-data-jpa")
 public class StartupTimeTest {
-	
+
 	private final static Logger LOGGER = LoggerFactory.getLogger(StartupTimeTest.class);
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-    
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
 	@Test
-	public void webAppAndSpringDataJpa(){
-		long startupTime = System.currentTimeMillis() - webApplicationContext.getStartupDate();
-		
-		LOGGER.info(String.format("Startup Time : %d sec", TimeUnit.MILLISECONDS.toSeconds(startupTime)));
-		
+	public void webAppAndSpringDataJpa() {
+		long startupTime = System.currentTimeMillis()
+				- this.webApplicationContext.getStartupDate();
+
+		LOGGER.info(String.format("Startup Time : %d sec",
+				TimeUnit.MILLISECONDS.toSeconds(startupTime)));
+
 		Assert.assertTrue(startupTime > 1);
 	}
 }
