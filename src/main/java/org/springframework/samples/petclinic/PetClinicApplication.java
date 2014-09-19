@@ -25,9 +25,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({ "org.springframework.samples.petclinic.configuration",
-		"org.springframework.samples.petclinic.service",
-		"org.springframework.samples.petclinic.web" })
+@ComponentScan
 public class PetClinicApplication extends SpringBootServletInitializer {
 
 	@Override
