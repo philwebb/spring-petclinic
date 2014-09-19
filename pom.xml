@@ -4,7 +4,7 @@
 	<groupId>org.springframework.samples</groupId>
 	<artifactId>spring-petclinic-springboot</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
