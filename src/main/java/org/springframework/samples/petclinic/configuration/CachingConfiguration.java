@@ -6,7 +6,7 @@ import net.sf.ehcache.config.PersistenceConfiguration.Strategy;
 import net.sf.ehcache.store.MemoryStoreEvictionPolicy;
 
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CachingConfigurer;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -16,15 +16,15 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuration class for the caching system using EhCache.
- * 
+ *
  * @author Fabien Lauf
  */
 @Configuration
 @EnableCaching
-public class CachingConfiguration implements CachingConfigurer {
-	
+public class CachingConfiguration extends CachingConfigurerSupport {
+
 	public static final String VETS_CACHE_NAME = "vets";
-	
+
 	@Bean(destroyMethod="shutdown")
     public net.sf.ehcache.CacheManager ehCacheManager() {
 		CacheConfiguration cacheConfiguration = new CacheConfiguration();

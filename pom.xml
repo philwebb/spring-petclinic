@@ -5,13 +5,13 @@
 	<artifactId>spring-petclinic-springboot</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.1.5.RELEASE</version>
+		<version>1.2.0.BUILD-SNAPSHOT</version>
 	</parent>
-	
+
 	<name>petclinic</name>
 
 	<properties>
@@ -19,39 +19,43 @@
 		<java.version>1.6</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
+
+		<!-- Tomcat -->
+		<tomcat.version>8.0.12</tomcat.version>
+
 		<!-- Cache -->
 		<ehcache.version>2.6.9</ehcache.version>
-		
+
 		<!-- Dates -->
 		<jodatime-hibernate.version>1.3</jodatime-hibernate.version>
 		<jodatime-jsptags.version>1.1.1</jodatime-jsptags.version>
 		<jadira-usertype-core.version>3.2.0.GA</jadira-usertype-core.version>
-		
+
 		<!-- Static bundles -->
 		<webjars-bootstrap.version>2.3.0</webjars-bootstrap.version>
 		<webjars-jquery-ui.version>1.10.3</webjars-jquery-ui.version>
 		<webjars-jquery.version>2.0.3-1</webjars-jquery.version>
-		
+
 		<!-- RSS -->
-		<rome.version>1.0</rome.version>
+		<rome.version>1.5.0</rome.version>
+
 	</properties>
-	
+
 	<dependencies>
-	
+
 		<!-- MVC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<!-- Monitoring services -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 			<version>${spring-boot.version}</version>
 		</dependency>
-		
+
 		<!-- Data -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,7 +66,7 @@
 			<artifactId>hsqldb</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- Cache -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
@@ -80,7 +84,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		
+
 		<!-- Tomcat -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -96,10 +100,10 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		
+
 		<!-- used for Atom -->
 		<dependency>
-			<groupId>rome</groupId>
+			<groupId>com.rometools</groupId>
 			<artifactId>rome</artifactId>
 			<version>${rome.version}</version>
 		</dependency>
@@ -108,15 +112,15 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-oxm</artifactId>
 		</dependency>
-		
-		
+
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Dates -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -137,7 +141,7 @@
 			<artifactId>usertype.core</artifactId>
 			<version>${jadira-usertype-core.version}</version>
 		</dependency>
-		
+
 		<!-- Web dependencies -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -155,7 +159,7 @@
 			<version>${webjars-jquery.version}</version>
 		</dependency>
 	</dependencies>
-    
+
 	<build>
 		<plugins>
 			<plugin>
