@@ -1,12 +1,13 @@
 package org.springframework.samples.petclinic.service;
 
+import static org.junit.Assert.*;
+
 import java.util.Collection;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +21,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.CollectionUtils;
 
 /**
- * <p>
  * Unit test for the ehCache caching system of the application. The "Spring Data Jpa"
  * profile is used.
- * </p>
+ *
  * @author Fabien Lauf
  */
-
 @SpringApplicationConfiguration(classes = PetClinicApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("spring-data-jpa")
@@ -47,40 +46,37 @@ public class ClinicServiceCachingTests {
 	@Test
 	public void findVets() {
 		assertCacheSize("vets", 0);
-
 		Collection<Vet> vets = this.clinicService.findVets();
-		Assert.assertFalse("There is no vets in database...",
-				CollectionUtils.isEmpty(vets));
-
+		assertFalse("There is no vets in database...", CollectionUtils.isEmpty(vets));
 		assertCacheSize("vets", vets.size());
 	}
 
 	@SuppressWarnings("unchecked")
 	private void assertCacheSize(String cacheName, int size) {
 		Cache cache = this.cacheManager.getCache(cacheName);
-		Assert.assertNotNull(String.format("cache [%s] is null!", cache.getName()), cache);
+		assertNotNull(String.format("cache [%s] is null!", cache.getName()), cache);
 		if (CollectionUtils.isEmpty(cache.getKeys())) {
-			Assert.assertEquals(
-					String.format("cache [%s] is not empty!", cache.getName()), 0, size);
+			assertEquals(String.format("cache [%s] is not empty!", cache.getName()), 0,
+					size);
 			return;
 		}
 
 		Element element = cache.get(cache.getKeys().get(0));
 		if (element.getObjectValue() == null) {
-			Assert.assertEquals(
-					String.format("cache [%s] is not empty!", cache.getName()), 0, size);
+			assertEquals(String.format("cache [%s] is not empty!", cache.getName()), 0,
+					size);
 			return;
 		}
 
-		Assert.assertNotNull(
+		assertNotNull(
 				String.format("the element of key [%s] is null!", element.getObjectKey()),
 				element.getObjectValue());
 		if (size == 1) {
-			Assert.assertFalse(element.getObjectValue() instanceof Collection);
+			assertFalse(element.getObjectValue() instanceof Collection);
 			return;
 		}
 		Collection<Object> collectionValue = ((Collection<Object>) element
 				.getObjectValue());
-		Assert.assertEquals(size, collectionValue.size());
+		assertEquals(size, collectionValue.size());
 	}
 }

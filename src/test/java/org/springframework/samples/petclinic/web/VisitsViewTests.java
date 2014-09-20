@@ -71,4 +71,5 @@ public class VisitsViewTests {
 		actions.andExpect(xpath("/vets/vetList[id=1]/firstName").string(
 				containsString("James")));
 	}
+
 }

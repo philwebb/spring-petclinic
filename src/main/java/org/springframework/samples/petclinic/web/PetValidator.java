@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 
 /**
- * <code>Validator</code> for <code>Pet</code> forms.
+ * <code>Validator</code> for {@link Pet} forms.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller

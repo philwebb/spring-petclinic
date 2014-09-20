@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
@@ -21,7 +20,6 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DirtiesContext
-@ActiveProfiles("spring-data-jpa")
 public class StartupTimeTest {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(StartupTimeTest.class);
@@ -39,4 +37,5 @@ public class StartupTimeTest {
 
 		Assert.assertTrue(startupTime > 1);
 	}
+
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.util;
+package org.springframework.samples.petclinic;
 
 import java.util.Collection;
 
@@ -22,19 +22,16 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
 /**
- * Utility methods for handling entities. Separate from the BaseEntity class mainly
- * because of dependency on the ORM-associated ObjectRetrievalFailureException.
+ * Utility methods for handling entities.
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @see org.springframework.samples.petclinic.model.BaseEntity
- * @since 29.10.2003
  */
-public abstract class EntityUtils {
+public abstract class EntityTestUtils {
 
 	/**
 	 * Look up the entity of the given class with the given id in the given collection.
-	 *
 	 * @param entities the collection to search
 	 * @param entityClass the entity class to look up
 	 * @param entityId the entity id to look up

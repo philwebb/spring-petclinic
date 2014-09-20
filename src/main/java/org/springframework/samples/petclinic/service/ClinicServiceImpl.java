@@ -40,6 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Michael Isvy
  */
 @Service
+@Transactional
 public class ClinicServiceImpl implements ClinicService {
 
 	private PetRepository petRepository;
@@ -76,25 +77,21 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
-	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
 		this.ownerRepository.save(owner);
 	}
 
 	@Override
-	@Transactional
 	public void saveVisit(Visit visit) throws DataAccessException {
 		this.visitRepository.save(visit);
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
 		return this.petRepository.findById(id);
 	}
 
 	@Override
-	@Transactional
 	public void savePet(Pet pet) throws DataAccessException {
 		this.petRepository.save(pet);
 	}
