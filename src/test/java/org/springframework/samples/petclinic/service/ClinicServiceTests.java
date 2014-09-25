@@ -22,23 +22,23 @@ import java.util.Collection;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.samples.petclinic.EntityTestUtils;
+import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Base class for {@link ClinicService} integration tests. Subclasses should specify
- * Spring context configuration using {@link ContextConfiguration @ContextConfiguration}
- * annotation
- * <p>
- * AbstractclinicServiceTests and its subclasses benefit from the following services
- * provided by the Spring TestContext Framework:
+ * {@link ClinicService} integration tests. Benefit from the following services provided
+ * by the Spring TestContext Framework:
  * <ul>
  * <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up
  * time between test execution.</li>
@@ -62,7 +62,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public abstract class AbstractClinicServiceTests {
+@SpringApplicationConfiguration(classes = PetClinicApplication.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@DirtiesContext
+public abstract class ClinicServiceTests {
 
 	@Autowired
 	protected ClinicService clinicService;

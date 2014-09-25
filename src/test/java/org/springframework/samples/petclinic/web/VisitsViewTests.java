@@ -30,7 +30,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.PetClinicApplication;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -47,7 +46,6 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DirtiesContext
-@ActiveProfiles("spring-data-jpa")
 public class VisitsViewTests {
 
 	@Autowired
